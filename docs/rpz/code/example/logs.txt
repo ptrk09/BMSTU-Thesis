@@ -1,0 +1,23 @@
+[AudioEngine] init system
+[AudioEngine] success make AudioNodes
+[AudioDataManager] fetch data bytes: 256
+[AudioThrottler] pull throttler buffer
+[AudioEngine] start stream network data
+[AudioParser] get metadata
+[AudioParser] get fileformat: mp3
+[AudioParser] get duration: 12987
+[AudioParser] get metadata
+[AudioParser] get fileformat: mp3
+[AudioParser] get duration: 11487
+[AudioConverter] success convert packets to PCM format
+[AudioConverter] pull PCM buffer
+[AudioConverter] pull PCM buffer
+[AudioConverter] pull PCM buffer
+[AudioEngine] play audio data
+[AudioEngine] edit rate: 0.5x
+[AudioEngine] edit rate: 0.52x
+[AudioEngine] edit rate: 0.73x
+[AudioEngine] edit rate: 1.43x
+[AudioEngine] seek to 1:12
+[AudioEngine] seek to 0:32
+[AudioEngine] pause audio data

@@ -1,0 +1,199 @@
+%----------------------- Преамбула -----------------------
+\documentclass[ut8x, 14pt, oneside, a4paper]{extarticle}
+
+\usepackage{extsizes} % Для добавления в параметры класса документа 14pt
+
+% Для работы с несколькими языками и шрифтом Times New Roman по-умолчанию
+\usepackage[english,russian]{babel}
+\usepackage{fontspec}
+\fi
+\setmainfont{Times New Roman}
+
+% ГОСТовские настройки для полей и абзацев
+\usepackage[left=30mm,right=10mm,top=20mm,bottom=20mm]{geometry}
+\usepackage{misccorr}
+\usepackage{indentfirst}
+\usepackage{enumitem}
+\setlength{\parindent}{1.25cm}
+%\setlength{\parskip}{1em} % поменять
+%\linespread{1.3}
+\renewcommand{\baselinestretch}{1.5}
+\setlist{nolistsep} % Отсутствие отступов между элементами \enumerate и \itemize
+
+% Дополнительное окружения для подписей
+\usepackage{array}
+\newenvironment{signstabular}[1][1]{
+	\renewcommand*{\arraystretch}{#1}
+	\tabular
+}{
+	\endtabular
+}
+% Переопределение стандартных \section, \subsection, \subsubsection по ГОСТу;
+% Переопределение их отступов до и после для 1.5 интервала во всем документе
+\usepackage{titlesec}
+
+\newcommand*{\setupsectionbase}{%
+	\titleformat
+	{\section}
+	[block]
+	{\bfseries\large\raggedright}
+	{\thesection}
+	{1em}{}
+}
+
+\newcommand*{\setupsectionstar}{%
+	\titleformat
+	{\section}
+	[block]
+	{\bfseries\large\centering}
+	{\thesection}
+	{1em}{}
+}
+
+% \titleformat
+% {\chapter}
+% [display]
+% {\bfseries\large\centering}
+% {\thechapter}
+% {0pt}{}
+
+% \titleformat
+% {\section}
+% [block]
+% {\bfseries\large\raggedright}
+% {\thesection}
+% {1em}{}
+
+\titleformat
+{\subsection}
+[hang]
+{\bfseries\normalsize\raggedright}
+{\thesubsection}
+{1em}{}
+\titlespacing\subsection
+{\parindent}{\parskip}{\parskip}
+
+\titleformat
+{\subsubsection}
+[hang]
+{\bfseries\normalsize\raggedright}
+{\thesubsubsection}
+{1em}{}
+\titlespacing\subsubsection
+{\parindent}{\parskip}{\parskip}
+
+
+% Работа с изображениями и таблицами; переопределение названий по ГОСТу
+\usepackage{caption}
+\captionsetup[figure]{
+	name={Рис.},
+	labelsep=endash
+}
+\captionsetup[table]{
+	name={Табл.},
+	% singlelinecheck=false,
+	% justification=raggedleft,
+	% singlelinecheck=off,
+	labelsep=endash
+}
+
+\usepackage{graphicx}
+\usepackage{diagbox} % Диагональное разделение первой ячейки в таблицах
+
+% Цвета для гиперссылок и листингов
+\usepackage{color}
+
+% Гиперссылки \toc с кликабельностью
+\usepackage{hyperref}
+
+\hypersetup{
+	linktoc=all,
+	linkcolor=black,
+	colorlinks=true,
+}
+
+% Листинги
+\setsansfont{Arial}
+\setmonofont{Courier New}
+
+\usepackage{color} % Цвета для гиперссылок и листингов
+%\definecolor{comment}{rgb}{0,0.5,0}
+%\definecolor{plain}{rgb}{0.2,0.2,0.2}
+%\definecolor{string}{rgb}{0.91,0.45,0.32}
+%\hypersetup{citecolor=blue}
+\hypersetup{citecolor=black}
+
+\usepackage{listings}
+% \lstset{
+% 	basicstyle=\footnotesize\ttfamily,
+% 	language=[Sharp]C, % Или другой ваш язык -- см. документацию пакета
+% 	commentstyle=\color{comment},
+% 	numbers=left,
+% 	numberstyle=\tiny\color{plain},
+% 	numbersep=5pt,
+% 	tabsize=4,
+% 	extendedchars=\true,
+% 	breaklines=true,
+% 	keywordstyle=\color{blue},
+% 	frame=b,
+% 	stringstyle=\ttfamily\color{string}\ttfamily,
+% 	showspaces=false,
+% 	showtabs=false,
+% 	xleftmargin=17pt,
+% 	framexleftmargin=17pt,
+% 	framexrightmargin=5pt,
+% 	framexbottommargin=4pt,
+% 	showstringspaces=false,
+% 	inputencoding=utf8x,
+% 	keepspaces=true
+% }
+\lstset{
+	basicstyle= \footnotesize,
+	breakatwhitespace=true,% разрыв строк только на whitespacce
+	breaklines=true,       % переносить длинные строки
+	%   captionpos=b,          % подписи снизу -- вроде не надо
+	inputencoding=koi8-r,
+	numbers=left,          % нумерация слева
+	numberstyle=\footnotesize,
+	showspaces=false,      % показывать пробелы подчеркиваниями -- идиотизм 70-х годов
+	showstringspaces=false,
+	showtabs=false,        % и табы тоже
+	stepnumber=1,
+	tabsize=4,              % кому нужны табы по 8 символов?
+	frame=single,
+	xleftmargin=20.4pt,
+	xrightmargin=3.4pt,
+	numbersep=5pt,
+}
+
+% \DeclareCaptionLabelSeparator{line}{\ --\ }
+% \DeclareCaptionFont{white}{\color{white}}
+% \DeclareCaptionFormat{listing}{\colorbox[cmyk]{0.43,0.35,0.35,0.01}{\parbox{\textwidth}{\hspace{15pt}#1#2#3}}}
+% \captionsetup[lstlisting]{
+% 	format=listing,
+% 	labelfont=white,
+% 	textfont=white,
+% 	singlelinecheck=false,
+% 	margin=0pt,
+% 	font={bf,footnotesize},
+% 	labelsep=line
+% }
+
+\usepackage{ulem} % Нормальное нижнее подчеркивание
+\usepackage{hhline} % Двойная горизонтальная линия в таблицах
+\usepackage[figure,table]{totalcount} % Подсчет изображений, таблиц
+\usepackage{rotating} % Поворот изображения вместе с названием
+\usepackage{lastpage} % Для подсчета числа страниц
+
+\makeatletter
+\renewcommand\@biblabel[1]{#1.}
+\makeatother
+
+\usepackage{color}
+\usepackage[cache=false, newfloat]{minted}
+
+% \newenvironment{code}{\captionsetup{type=listing}}{}
+% \SetupFloatingEnvironment{listing}{name=Листинг}
+
+\usepackage{amsmath}
+\usepackage{diagbox}
